@@ -1,0 +1,7 @@
+# Data files
+*.nc
+*.csv
+data/
+# Database
+*.db
+# .env
