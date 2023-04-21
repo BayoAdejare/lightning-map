@@ -23,7 +23,7 @@ def kmeans_model(data: pd.DataFrame, context: str=None):
     """
     Fit data to kmeans cluster algorithm.
     """
-    k = 2
+    k = 12
     X = data.loc[:, ["lon", "lat"]]
     kmeans = KMeans(n_clusters=k, n_init=10)
     X["Cluster"] = kmeans.fit_predict(X)
@@ -46,7 +46,7 @@ def sil_evaluation(data: pd.DataFrame, context: str=None):
     silhouette_coefficients = []
 
     # Notice we start at 2 clusters for silhouette coefficient
-    for k in range(2, 12):
+    for k in range(2, 24):
         kmeans = KMeans(n_clusters=k, **kmeans_kwargs)
         kmeans.fit(data)
         score = silhouette_score(data, kmeans.labels_)
@@ -70,7 +70,7 @@ def elb_evaluation(data: pd.DataFrame, context: str=None):
     elb_sse = []
 
     # Return SSE for each k
-    for k in range(1, 12):
+    for k in range(1, 24):
         kmeans = KMeans(n_clusters=k, **kmeans_kwargs)
         kmeans.fit(data)
         elb_sse.append(kmeans.inertia_)

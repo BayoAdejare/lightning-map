@@ -1,15 +1,13 @@
-import os
 import pandas as pd
 import duckdb as db
 
-from datetime import datetime, date, timedelta
 from dagster import asset, RetryPolicy
 from .clustering import preprocess, kmeans_model, sil_evaluation, elb_evaluation
 from .ingestor import ingestion
 
 # Date range 
 start_date = "2023-01-01"
-end_date = "2023-01-02"
+end_date = "2023-01-01"
 
 def db_connect(process: str):
     if process == "preprocess":

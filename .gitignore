@@ -4,4 +4,7 @@
 data/
 # Database
 *.db
+*.db.wal
+# py cache
+**__pycache__
 # .env
