@@ -5,10 +5,13 @@ Uses [Dagster Software-Defined Assets](https://docs.dagster.io/concepts/assets/s
 
 Blog post: Coming soon!
 
+
+<p align="center">
 <figure align="center">
-<img width="30%" src="screenshot/cluster_process.png">
+<img width="60%" src="screenshot/cluster_process.png">
 <figcaption>Visual of clustering process</figcaption>
 </figure>
+</p>
 
 
 ## Installation
@@ -44,12 +47,14 @@ Performs grouping of the ingested data by implementing K-Means clustering algori
 + `ingestor`: Composed of `extract`, `transform`, and `load` data assets.
 + `preprocessor`: prepares the data for cluster model, clean and normalize the data.
 + `kmeans_cluster`: fits the data to an implementation of k-means cluster algorithm.
-+ `evaluators`: two options for simple evaluations of the k-means cluster (unsupervised machine learning) model, one using `silhoette coefficient` and the other `elbow method`.
++ `evaluators`: two options for simple evaluations of the k-means cluster (unsupervised machine learning) model, one using `silhouette coefficient` and the other `elbow method`.
 
+<p align="center">
 <figure align="center">
-<img width="30%" src="screenshot/pipeline/eda_sda_pipe.png">
+<img width="40%" src="screenshot/pipeline/eda_sda_pipe.png">
 <figcaption>Dagit UI displaying EDA data assets</figcaption>
 </figure>
+</p>
 
 ## Testing
 
