@@ -3,7 +3,7 @@
 An example performing `Exploratory Data Analysis` `(EDA)` by implementing simple K-Means clustering algorithm on a Lightning flash dataset collected from NOAA's GLM.
 Uses [Dagster Software-Defined Assets](https://docs.dagster.io/concepts/assets/software-defined-assets) to orchestrate a Machine Learning pipeline.
 
-Blog post: Coming soon!
+Blog post: [Exploratory Data Analysis with Lightning Clustering Pipeline](https://medium.com/@adebayoadejare/exploratory-data-analysis-with-lightning-clustering-pipeline-6a2bca17d0d3)
 
 
 <p align="center">
