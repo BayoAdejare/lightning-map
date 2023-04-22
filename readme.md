@@ -8,11 +8,10 @@ Blog post: Coming soon!
 
 <p align="center">
 <figure align="center">
-<img width="60%" src="screenshot/cluster_process.png">
+<img width="500px" alt="An example clustering of flash data points." src="screenshot/cluster_process.png">
 <figcaption>Visual of clustering process</figcaption>
 </figure>
 </p>
-
 
 ## Installation
 
@@ -51,7 +50,7 @@ Performs grouping of the ingested data by implementing K-Means clustering algori
 
 <p align="center">
 <figure align="center">
-<img width="40%" src="screenshot/pipeline/eda_sda_pipe.png">
+<img width="400px" alt="Display of clustering materialized assets." src="screenshot/pipeline/eda_sda_pipe.png">
 <figcaption>Dagit UI displaying EDA data assets</figcaption>
 </figure>
 </p>

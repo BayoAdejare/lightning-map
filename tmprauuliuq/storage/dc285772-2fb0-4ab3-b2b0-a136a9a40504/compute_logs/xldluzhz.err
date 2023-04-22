@@ -1,0 +1,36 @@
+[32m2023-04-22 14:34:18 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - 2141123 - LOGS_CAPTURED - Started capturing logs in process (pid: 2141123).
+[32m2023-04-22 14:34:18 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - 2141123 - Silhouette_evaluator - STEP_START - Started execution of step "Silhouette_evaluator".
+[32m2023-04-22 14:34:18 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - Silhouette_evaluator - Loading file from: /home/storm/lossy/lightning-map/tmprauuliuq/storage/kmeans_cluster
+[32m2023-04-22 14:34:18 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - 2141123 - Silhouette_evaluator - ASSET_OBSERVATION - ASSET_OBSERVATION for step Silhouette_evaluator
+[32m2023-04-22 14:34:18 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - 2141123 - Silhouette_evaluator - LOADED_INPUT - Loaded input "kmeans_cluster" using input manager "io_manager", from output "result" of step "kmeans_cluster"
+[32m2023-04-22 14:34:18 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - 2141123 - Silhouette_evaluator - STEP_INPUT - Got input "kmeans_cluster" of type "DataFrame". (Type check passed).
+[32m2023-04-22 14:34:18 -0400[0m - dagster - [34mINFO[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - Silhouette_evaluator - Starting silhouette evaluation ...
+[32m2023-04-22 15:25:21 -0400[0m - dagster - [34mINFO[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - Silhouette_evaluator - Silhoutte coefficients:     silhouette_coefficient
+k                         
+2                 0.744534
+3                 0.754839
+4                 0.779895
+5                 0.735625
+6                 0.516778
+7                 0.547183
+8                 0.560281
+9                 0.588482
+10                0.583166
+11                0.624102
+12                0.588058
+13                0.649862
+14                0.614825
+15                0.635038
+16                0.656755
+17                0.625680
+18                0.620523
+19                0.620223
+20                0.606329
+21                0.586563
+22                0.586963
+23                0.570185
+[32m2023-04-22 15:25:21 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - 2141123 - Silhouette_evaluator - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
+[32m2023-04-22 15:25:21 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - Silhouette_evaluator - Writing file at: /home/storm/lossy/lightning-map/tmprauuliuq/storage/Silhouette_evaluator
+[32m2023-04-22 15:25:21 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - 2141123 - Silhouette_evaluator - ASSET_MATERIALIZATION - Materialized value Silhouette_evaluator.
+[32m2023-04-22 15:25:21 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - 2141123 - Silhouette_evaluator - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+[32m2023-04-22 15:25:21 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - 2141123 - Silhouette_evaluator - STEP_SUCCESS - Finished execution of step "Silhouette_evaluator" in 51m2s.

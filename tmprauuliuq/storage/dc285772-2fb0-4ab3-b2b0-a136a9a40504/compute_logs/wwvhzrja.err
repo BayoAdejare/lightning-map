@@ -1,0 +1,13 @@
+[32m2023-04-22 14:34:14 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - 2140926 - LOGS_CAPTURED - Started capturing logs in process (pid: 2140926).
+[32m2023-04-22 14:34:14 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - 2140926 - preprocessor - STEP_START - Started execution of step "preprocessor".
+[32m2023-04-22 14:34:14 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - preprocessor - Loading file from: /home/storm/lossy/lightning-map/tmprauuliuq/storage/ingestor
+[32m2023-04-22 14:34:14 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - 2140926 - preprocessor - ASSET_OBSERVATION - ASSET_OBSERVATION for step preprocessor
+[32m2023-04-22 14:34:14 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - 2140926 - preprocessor - LOADED_INPUT - Loaded input "ingestor" using input manager "io_manager", from output "result" of step "ingestor"
+[32m2023-04-22 14:34:14 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - 2140926 - preprocessor - STEP_INPUT - Got input "ingestor" of type "Any". (Type check passed).
+[32m2023-04-22 14:34:14 -0400[0m - dagster - [34mINFO[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - preprocessor - Starting file extracts for lon ...
+[32m2023-04-22 14:34:14 -0400[0m - dagster - [34mINFO[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - preprocessor - Starting file extracts for lat ...
+[32m2023-04-22 14:34:14 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - 2140926 - preprocessor - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
+[32m2023-04-22 14:34:14 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - preprocessor - Writing file at: /home/storm/lossy/lightning-map/tmprauuliuq/storage/preprocessor
+[32m2023-04-22 14:34:14 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - 2140926 - preprocessor - ASSET_MATERIALIZATION - Materialized value preprocessor.
+[32m2023-04-22 14:34:14 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - 2140926 - preprocessor - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+[32m2023-04-22 14:34:14 -0400[0m - dagster - [34mDEBUG[0m - clustering_job - dc285772-2fb0-4ab3-b2b0-a136a9a40504 - 2140926 - preprocessor - STEP_SUCCESS - Finished execution of step "preprocessor" in 201ms.
