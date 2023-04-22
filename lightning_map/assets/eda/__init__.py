@@ -1,3 +1,5 @@
+import os
+
 import pandas as pd
 import duckdb as db
 
@@ -6,8 +8,8 @@ from .clustering import preprocess, kmeans_model, sil_evaluation, elb_evaluation
 from .ingestor import ingestion
 
 # Date range 
-start_date = "2023-01-01"
-end_date = "2023-01-01"
+start_date = "2023-04-20"
+end_date = "2023-04-20"
 
 def db_connect(process: str):
     if process == "preprocess":
@@ -22,17 +24,17 @@ def db_connect(process: str):
         return conn
 
 
-@asset(group_name="Ingest", description="Ingest data.", compute_kind="ml_ops")
+@asset(group_name="EDA", description="Ingest data.", compute_kind="ml_ops")
 def ingestor(context):
-    context.log.info(f"Starting ingestion...")
+    context.log.info(f"Starting ingestion from {start_date} to {end_date}..")
     return ingestion(start_date, end_date, context)
 
 @asset(group_name="EDA", description="Preprocess data.", compute_kind="prep", retry_policy=RetryPolicy(max_retries=3, delay=10))
 def preprocessor(context, ingestor):
     # config data load
     lat_df, lon_df = db_connect(process="preprocess")
-    context.log.info(f"Starting file extracts for lon: {lon_df}")
-    context.log.info(f"Starting file extracts for lat: {lat_df}")
+    context.log.info(f"Starting file extracts for lon ...")
+    context.log.info(f"Starting file extracts for lat ...")
     results = []
     preprocessing = preprocess(lat_df, lon_df, context)
     results = pd.DataFrame(preprocessing)
@@ -40,11 +42,12 @@ def preprocessor(context, ingestor):
 
 @asset(group_name="EDA", description="Group data into 'k' clusters.", compute_kind="model")
 def kmeans_cluster(context, preprocessor: pd.DataFrame):
-    context.log.info(f"Starting cluster model: {preprocessor}")
+    k = os.getenv("NUM_OF_CLUSTERS", 12)
+    context.log.info(f"Starting cluster model, k={k}...")
     results = []
-    clusters = kmeans_model(preprocessor, context)
+    clusters = kmeans_model(preprocessor, k, context)
     results = pd.DataFrame(clusters)
-    context.log.info(f"Generated cluster model: {results}")
+    context.log.info(f"Generated cluster model ...")
     # save clusters to db
     conn = db_connect(process="model")
     try:
@@ -55,13 +58,14 @@ def kmeans_cluster(context, preprocessor: pd.DataFrame):
         conn.sql("INSERT INTO cluster_analysis SELECT * FROM results")
     return results
 
-@asset(group_name="EDA", description="Silhoette coefficient score 'k'.", compute_kind="eval")
-def Silhoette_evaluator(context, kmeans_cluster: pd.DataFrame):
-    context.log.info(f"Starting silhoette evaluation: {kmeans_cluster}")
-    results = []
+@asset(group_name="EDA", description="Silhouette coefficient score 'k'.", compute_kind="eval", retry_policy=RetryPolicy(max_retries=3, delay=10))
+def Silhouette_evaluator(context, kmeans_cluster: pd.DataFrame):
+    context.log.info(f"Starting silhouette evaluation ...")
     sil_coefficients = sil_evaluation(kmeans_cluster, context)
-    results.append(sil_coefficients)
+    results = sil_coefficients.set_index('k', drop=True)
+    k_max = results['silhouette_coefficient'].argmax()
     context.log.info(f"Silhoutte coefficients: {results}")
+    os.environ["NUM_OF_CLUSTERS"] = str(k_max)
     # save evaluations db
     return results
 
@@ -71,6 +75,6 @@ def elbow_evaluator(context, kmeans_cluster: pd.DataFrame):
     results = []
     elb_sse = elb_evaluation(kmeans_cluster, context)
     results.append(elb_sse)
-    context.log.info(f"Elbow SSE: {results}")
+    context.log.info(f"Elbow SSE ...")
     # save evaluations db
     return results

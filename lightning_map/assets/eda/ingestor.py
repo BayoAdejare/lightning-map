@@ -13,14 +13,14 @@ def ingestion_config():
     # Required parameters:
     bucket_name = os.getenv("S3_BUCKET") # Satellite i.e. GOES-18  
     product_line = os.getenv("PRODUCT")  # Product line id i.e. ABI...
-    prefix = product_line + '/' + year + '/' + day_of_year + '/' + hour + '/'
+    prefix = f"{product_line}/{year}/{day_of_year}/{hour}/"
 
     return prefix, bucket_name
 
 # 24 hours
 # hours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", 
-            #    "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
-hours = ["00", "01"]
+#                "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
+hours = ["00", "01", "02"]
 
 def ingestion(start_date: str, end_date: str, context: str=None):
     """Collects the data"""

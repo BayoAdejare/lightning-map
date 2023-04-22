@@ -23,7 +23,7 @@ def etl_config(process: str):
     # Required parameters:
     bucket_name = os.getenv("S3_BUCKET") # Satellite i.e. GOES-18  
     product_line = os.getenv("PRODUCT")  # Product line id i.e. ABI...
-    prefix = str(product_line) + '/' + str(year) + '/' + str(day_of_year) + '/' + str(hour) + '/'
+    prefix = f"{product_line}/{year}/{day_of_year}/{hour}/"
     basepath = Path(__file__).resolve().parent.parent.parent.parent
     if process == "extract":
         src_folder = prefix

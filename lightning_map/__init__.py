@@ -10,10 +10,10 @@ hourly_etl_schedule = ScheduleDefinition(
 )
 
 ingestion_asset_job = define_asset_job(name="ingestion_job", selection="ingestor")
-clustering_job = define_asset_job(name="clustering_job", selection=["ingestor", "preprocessor", "kmeans_cluster", "Silhoette_evaluator"])
-daily_clustering_schedule = ScheduleDefinition(
+clustering_job = define_asset_job(name="clustering_job", selection=["ingestor", "preprocessor", "kmeans_cluster", "Silhouette_evaluator"])
+hourly_clustering_schedule = ScheduleDefinition(
     job=clustering_job,
-    cron_schedule="@daily",
+    cron_schedule="@hourly",
     execution_timezone="America/New_York"
 )
 
@@ -22,5 +22,5 @@ defs = Definitions(
     assets=load_assets_from_package_module(assets), 
     jobs=[etl_asset_job, ingestion_asset_job, clustering_job],
     # resources: s3, io_manager
-    schedules=[hourly_etl_schedule, daily_clustering_schedule],
+    schedules=[hourly_etl_schedule, hourly_clustering_schedule],
 )

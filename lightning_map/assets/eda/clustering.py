@@ -1,7 +1,6 @@
 import os
 
 import pandas as pd
-import duckdb as db
 
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
@@ -19,11 +18,11 @@ def preprocess(lat: pd.DataFrame, lon: pd.DataFrame, context: str=None) -> pd.Da
 
     return geo_df
 
-def kmeans_model(data: pd.DataFrame, context: str=None):
+def kmeans_model(data: pd.DataFrame, num_clusters: int, context: str=None):
     """
     Fit data to kmeans cluster algorithm.
     """
-    k = 12
+    k = num_clusters
     X = data.loc[:, ["lon", "lat"]]
     kmeans = KMeans(n_clusters=k, n_init=10)
     X["Cluster"] = kmeans.fit_predict(X)
@@ -34,35 +33,39 @@ def sil_evaluation(data: pd.DataFrame, context: str=None):
     """
     Evaluate the k-means silhouette coefficient.
     """
+    data = data.loc[:, ["lon", "lat"]]
     
     kmeans_kwargs = {
         "init": "random",
         "n_init": 10,
-        "max_iter": 300,
+        "max_iter": 30,
         "random_state": 42,
     }
 
-    # A list holds the silhouette coefficients for each k
-    silhouette_coefficients = []
+    # holds the silhouette coefficients for each k
+    silhouette_coefficients = {}
 
-    # Notice we start at 2 clusters for silhouette coefficient
+
+    # start at 2 clusters for silhouette coefficient
     for k in range(2, 24):
         kmeans = KMeans(n_clusters=k, **kmeans_kwargs)
         kmeans.fit(data)
         score = silhouette_score(data, kmeans.labels_)
-        silhouette_coefficients.append(score)
+        silhouette_coefficients[k] = score
     
-    return silhouette_coefficients
+    sil_df = pd.DataFrame(list(silhouette_coefficients.items()), columns=['k', 'silhouette_coefficient'])
+
+    return sil_df
 
 def elb_evaluation(data: pd.DataFrame, context: str=None):
     """
-    Evaluate the k-means elbow method, sse.
+    Evaluate the k-means elbow method, sum of squared error.
     """
     
     kmeans_kwargs = {
         "init": "random",
         "n_init": 10,
-        "max_iter": 300,
+        "max_iter": 30,
         "random_state": 42,
     }
 
