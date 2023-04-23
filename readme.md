@@ -7,7 +7,7 @@ Blog post: [Exploratory Data Analysis with Lightning Clustering Pipeline](https:
 
 <p align="center">
 <figure align="center">
-<img width="800px" alt="An example clustering of flash data points." src="screenshot/sample_lightning_clusters.gif">
+<img width="800px" alt="An example clustering of flash data points." src="./img/sample_lightning_clusters.gif">
 <figcaption align="center">Lightning clustering map</figcaption>
 </figure>
 </p>
@@ -30,7 +30,7 @@ The dagster daemon is required to start the scheduling, from the dagit ui, you c
 
 <p align="center">
 <figure align="center">
-<img width="400px" alt="An example clustering pipeline." src="screenshot/pipeline/eda_sda_job.png">
+<img width="400px" alt="An example clustering pipeline." src="img/pipeline/eda_sda_job.png">
 <figcaption align="center">Lightning clustering pipeline</figcaption>
 </figure>
 </p>
@@ -51,7 +51,7 @@ Performs grouping of the ingested data by implementing K-Means clustering algori
 
 <p align="center">
 <figure align="center">
-<img width="800px" alt="An example clustering of flash data points." src="screenshot/cluster_process.png">
+<img width="800px" alt="An example clustering of flash data points." src="img/cluster_process.png">
 <figcaption align="center">Visual of clustering process</figcaption>
 </figure>
 </p>
@@ -65,7 +65,7 @@ Performs grouping of the ingested data by implementing K-Means clustering algori
 
 <p align="center">
 <figure align="center">
-<img width="400px" alt="Display of clustering materialized assets." src="screenshot/pipeline/eda_sda_pipe.png">
+<img width="400px" alt="Display of clustering materialized assets." src="img/pipeline/eda_sda_pipe.png">
 <figcaption>Dagit UI displaying EDA data assets</figcaption>
 </figure>
 </p>
