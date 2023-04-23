@@ -4,6 +4,7 @@
 data/
 # Database
 *.db
+*.db.test
 *.db.wal
 # py cache
 **__pycache__
