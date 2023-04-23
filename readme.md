@@ -7,8 +7,8 @@ Blog post: [Exploratory Data Analysis with Lightning Clustering Pipeline](https:
 
 <p align="center">
 <figure align="center">
-<img width="800px" alt="An example clustering of flash data points." src="screenshot/cluster_process.png">
-<figcaption>Visual of clustering process</figcaption>
+<img width="800px" alt="An example clustering of flash data points." src="screenshot/sample_lightning_clusters.gif">
+<figcaption align="center">Lightning clustering map</figcaption>
 </figure>
 </p>
 
@@ -26,21 +26,37 @@ Run the command to start the dagster orchestration framework:
 
 The dagster daemon is required to start the scheduling, from the dagit ui, you can run and monitor the data assets.
 
-## Data Ingestion
+## Data Pipeline
+
+<p align="center">
+<figure align="center">
+<img width="400px" alt="An example clustering pipeline." src="screenshot/pipeline/eda_sda_job.png">
+<figcaption align="center">Lightning clustering pipeline</figcaption>
+</figure>
+</p>
+
+### Data Ingestion
 
 Ingests the data needed based on specified time window: start and end dates.
 
-### Data Assets
+#### Data Assets
 
 + `extract`: downloads [NOAA GOES-R GLM](https://www.goes-r.gov/spacesegment/glm.html) netCDF files from AWS s3 bucket
 + `transform`: converts GLM netCDF into time and geo series CSVs 
 + `load`: loads CSVs to a local backend, persistant duckdb
 
-## Cluster Analysis
+### Cluster Analysis
 
 Performs grouping of the ingested data by implementing K-Means clustering algorithm.
 
-### Data Assets
+<p align="center">
+<figure align="center">
+<img width="800px" alt="An example clustering of flash data points." src="screenshot/cluster_process.png">
+<figcaption align="center">Visual of clustering process</figcaption>
+</figure>
+</p>
+
+#### Data Assets
 
 + `ingestor`: Composed of `extract`, `transform`, and `load` data assets.
 + `preprocessor`: prepares the data for cluster model, clean and normalize the data.
