@@ -44,7 +44,7 @@ def etl_config(process: str):
         if not os.path.exists(dest_folder):
             os.makedirs(dest_folder)
     else: 
-        print(f"Process {process} not found!")
+        context.log.info(f"Process {process} not found!")
 
     return src_folder, bucket_name, dest_folder
 
@@ -63,7 +63,7 @@ def source(context):
         # Download file from list
         filepath = files['Key']
         path, filename = os.path.split(filepath)
-        print(f"Dowloading {filename} to {os.path.join(extract_folder, filename)}")
+        context.log.info(f"Dowloading {filename} to {os.path.join(extract_folder, filename)}")
         s3_extract = extract(bucket_name, prefix, filename, filepath, context)
         results.append(s3_extract)
     # context.add_output_metadata({s3_extract -> results})
@@ -73,7 +73,7 @@ def source(context):
 def transformations(context, source):
     # config file string
     extract_folder, bucket_name, transform_folder = etl_config(process="transform")
-    glm_files = os.listdir(extract_folder)
+    glm_files = [f for f in os.listdir(extract_folder) if f.endswith(".nc") ]
     # Exit if source folder not existing
     if not os.path.exists(extract_folder):
         pass
@@ -88,8 +88,9 @@ def transformations(context, source):
     context.log.info(f"Starting file conversions for: {extract_folder}")
     # Convert glm files into one time series dataframe
     for filename in tqdm(glm_files, desc=f"transform {extract_folder}"):
-        print(f"Converting {filename} to csv")
+        context.log.info(f"Converting {filename} to csv")
         csv_transform = transform(extract_folder, transform_folder, filename, context)
+        os.rename(filename, f"{filename}.ext")
         results.append(csv_transform)
     # csv_transform -> results
     return results
@@ -98,7 +99,7 @@ def transformations(context, source):
 def destination(context, transformations):
     # config file string
     transform_folder, bucket_name, load_folder = etl_config(process="load")
-    glm_files = os.listdir(transform_folder)
+    glm_files =  [f for f in os.listdir(transform_folder) if f.endswith(".csv") ]
     context.log.info(f"Starting files load for: {transform_folder}")
     # Navigate to folder
     os.chdir(transform_folder)
@@ -106,15 +107,16 @@ def destination(context, transformations):
         try:
             # Copy to folder
             shutil.copy(filename, load_folder)
-            # If source and destination are same
+            os.rename(filename, f"{filename}.trm")
+        # If source and destination are same
         except shutil.SameFileError:
-            print("Source and destination represents the same file.")
+            context.log.info("Source and destination represents the same file.")
         # If there is any permission issue
         except PermissionError:
-            print("Permission denied.")
+            context.log.info("Permission denied.")
         # For other errors
         except:
-            print(f"Error copying {filename} to {load_folder}.")
+            context.log.info(f"Error copying {filename} to {load_folder}.")
     results = []
     context.log.info(f"Loading {load_folder} bulk files to db.")
     db_load = load(load_folder, context)

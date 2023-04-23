@@ -1,9 +1,9 @@
 from setuptools import find_packages, setup
 
 setup(
-    name="etl_forecast",
+    name="lightning_map",
     version="0.0.1",
-    packages=find_packages(exclude=["etl_forecast_tests"]),
+    packages=find_packages(exclude=["lightning_map_tests"]),
     install_requires=[
         "dagster",
         "duckdb",

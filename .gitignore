@@ -7,4 +7,5 @@ data/
 *.db.wal
 # py cache
 **__pycache__
+*.pyc
 # .env

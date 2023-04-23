@@ -76,9 +76,9 @@ def load(load_folder: str, context: str=None) -> pd.DataFrame:
     """
     Load GOES csv files into destination system
     """ 
+    os.chdir(load_folder)
     glm_files = [s for s in os.listdir() if s.endswith('.csv')]    
     conn = db.connect(f"{load_folder}/glmFlash.db")
-    os.chdir(load_folder)
     try:
         # create the table "tbl_flash" from the csv files
         conn.execute(f"""

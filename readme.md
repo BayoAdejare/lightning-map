@@ -5,10 +5,9 @@ Uses [Dagster Software-Defined Assets](https://docs.dagster.io/concepts/assets/s
 
 Blog post: [Exploratory Data Analysis with Lightning Clustering Pipeline](https://medium.com/@adebayoadejare/exploratory-data-analysis-with-lightning-clustering-pipeline-6a2bca17d0d3)
 
-
 <p align="center">
 <figure align="center">
-<img width="500px" alt="An example clustering of flash data points." src="screenshot/cluster_process.png">
+<img width="800px" alt="An example clustering of flash data points." src="screenshot/cluster_process.png">
 <figcaption>Visual of clustering process</figcaption>
 </figure>
 </p>
