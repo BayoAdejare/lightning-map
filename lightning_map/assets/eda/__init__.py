@@ -24,12 +24,12 @@ def db_connect(process: str):
         return conn
 
 
-@asset(group_name="EDA", description="Ingest data.", compute_kind="ml_ops")
+@asset(group_name="Ingest", description="Ingest data.", compute_kind="etl")
 def ingestor(context):
     context.log.info(f"Starting ingestion from {start_date} to {end_date}..")
     return ingestion(start_date, end_date, context)
 
-@asset(group_name="EDA", description="Preprocess data.", compute_kind="prep", retry_policy=RetryPolicy(max_retries=3, delay=10))
+@asset(group_name="Cluster", description="Preprocess data.", compute_kind="prep", retry_policy=RetryPolicy(max_retries=3, delay=10))
 def preprocessor(context, ingestor):
     # config data load
     lat_df, lon_df = db_connect(process="preprocess")
@@ -40,9 +40,9 @@ def preprocessor(context, ingestor):
     results = pd.DataFrame(preprocessing)
     return results
 
-@asset(group_name="EDA", description="Group data into 'k' clusters.", compute_kind="model")
+@asset(group_name="Cluster", description="Group data into 'k' clusters.", compute_kind="model")
 def kmeans_cluster(context, preprocessor: pd.DataFrame):
-    k = os.getenv("NUM_OF_CLUSTERS", 12)
+    k = int(os.getenv("NUM_OF_CLUSTERS", 12))
     context.log.info(f"Starting cluster model, k={k}...")
     results = []
     clusters = kmeans_model(preprocessor, k, context)
@@ -58,7 +58,7 @@ def kmeans_cluster(context, preprocessor: pd.DataFrame):
         conn.sql("INSERT INTO cluster_analysis SELECT * FROM results")
     return results
 
-@asset(group_name="EDA", description="Silhouette coefficient score 'k'.", compute_kind="eval", retry_policy=RetryPolicy(max_retries=3, delay=10))
+@asset(group_name="Cluster", description="Silhouette coefficient score 'k'.", compute_kind="eval", retry_policy=RetryPolicy(max_retries=3, delay=10))
 def Silhouette_evaluator(context, kmeans_cluster: pd.DataFrame):
     context.log.info(f"Starting silhouette evaluation ...")
     sil_coefficients = sil_evaluation(kmeans_cluster, context)
@@ -69,7 +69,7 @@ def Silhouette_evaluator(context, kmeans_cluster: pd.DataFrame):
     # save evaluations db
     return results
 
-@asset(group_name="EDA", description="Elbow method score 'k'.", compute_kind="eval")
+@asset(group_name="Cluster", description="Elbow method score 'k'.", compute_kind="eval")
 def elbow_evaluator(context, kmeans_cluster: pd.DataFrame):
     context.log.info(f"Starting elbow evaluation: {kmeans_cluster}")
     results = []
