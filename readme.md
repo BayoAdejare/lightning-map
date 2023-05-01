@@ -5,12 +5,9 @@ Uses [Dagster Software-Defined Assets](https://docs.dagster.io/concepts/assets/s
 
 Blog post: [Exploratory Data Analysis with Lightning Clustering Pipeline](https://medium.com/@adebayoadejare/exploratory-data-analysis-with-lightning-clustering-pipeline-6a2bca17d0d3)
 
-<p align="center">
-<figure align="center">
-<img width="800px" alt="An example clustering of flash data points." src="./img/sample_lightning_clusters.gif">
-<figcaption align="center">Lightning clustering map</figcaption>
-</figure>
-</p>
+|<a href="./img/sample_lightning_clusters.gif" align="center"><img src="./img/sample_lightning_clusters.gif" alt="An example clustering of flash data points" width="800px"/></a>
+|:--:|
+|Lightning clustering map|
 
 ## Installation
 
@@ -59,12 +56,9 @@ Performs grouping of the ingested data by implementing K-Means clustering algori
 + `silhouette_evaluator`: evaluates the choice of 'k' clusters by calculating the silhouette coefficient for each k in defined range.
 + `elbow_evaluator`: evaluates the choice of 'k' clusters by calculating the sum of the squared distance for each k in defined range.
 
-<p align="center">
-<figure align="center">
-<img width="400px" alt="Display of clustering materialized assets." src="img/pipeline/eda_sda_pipe.png">
-<figcaption>Displaying Clusering analysis data assets</figcaption>
-</figure>
-</p>
+|<a href="img/pipeline/eda_sda_pipe.png" align="center"><img src="img/pipeline/eda_sda_pipe.png" alt="Display of clustering materialized assets" width="400px"/></a>
+|:--:|
+|Displaying Clusering analysis data assets|
 
 ## Testing
 

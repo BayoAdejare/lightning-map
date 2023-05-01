@@ -11,6 +11,10 @@ from .ingestor import ingestion
 start_date = "2023-04-30"
 end_date = "2023-04-30"
 
+# 24 hours
+hours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", 
+            "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
+
 def db_connect(process: str):
     if process == "preprocess":
         # conn string for preprocess data
@@ -27,7 +31,7 @@ def db_connect(process: str):
 @asset(group_name="Ingest", description="Ingest data.", compute_kind="etl")
 def ingestor(context):
     context.log.info(f"Starting ingestion from {start_date} to {end_date}..")
-    return ingestion(start_date, end_date, context)
+    return ingestion(start_date, end_date, hours, context)
 
 @asset(group_name="Cluster", description="Preprocess data.", compute_kind="prep", retry_policy=RetryPolicy(max_retries=3, delay=10))
 def preprocessor(context, ingestor):

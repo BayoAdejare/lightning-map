@@ -17,16 +17,11 @@ def ingestion_config():
 
     return prefix, bucket_name
 
-# 24 hours
-hours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", 
-            "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
-
-def ingestion(start_date: str, end_date: str, context: str=None):
+def ingestion(start_date: str, end_date: str, hours: [str], context: str=None):
     """Collects the data"""
 
     for single_date in pd.date_range(start_date, end_date, freq="D"):
-        hours_bucket = hours
-        for single_hour in hours_bucket:
+        for single_hour in hours:
             print(f"Start date: {start_date}; End date: {end_date}")
             # Export env vars
             os.environ["GOES_YEAR"] = single_date.strftime("%Y")
