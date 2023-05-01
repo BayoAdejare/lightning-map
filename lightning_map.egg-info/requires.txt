@@ -1,0 +1,6 @@
+boto3
+botocore
+dagster
+duckdb
+netCDF4
+pandas
