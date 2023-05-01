@@ -5,7 +5,9 @@ data/
 # Database
 *.db
 *.db.wal
-# py cache
+# packaging
 **__pycache__
 *.pyc
+*.egg-info/
+*.egg
 # .env

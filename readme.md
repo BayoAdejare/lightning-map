@@ -28,12 +28,10 @@ The dagster daemon is required to start the scheduling, from the dagit ui, you c
 
 ## Data Pipeline
 
-<p align="center">
-<figure align="center">
-<img width="400px" alt="An example clustering pipeline." src="img/pipeline/eda_sda_job.png">
-<figcaption align="center">Materializing Lightning clustering pipeline</figcaption>
-</figure>
-</p>
+|<a href="img/pipeline/eda_sda_job.png" align="center"><img src="img/pipeline/eda_sda_job.png" alt="Lightning clustering pipeline Illustration" width="400px"/></a>
+|:--:|
+|Materializing Lightning clustering pipeline|
+
 
 ### Data Ingestion
 
@@ -50,12 +48,9 @@ Ingests the data needed based on specified time window: start and end dates.
 
 Performs grouping of the ingested data by implementing K-Means clustering algorithm.
 
-<p align="center">
-<figure align="center">
-<img width="800px" alt="An example clustering of flash data points." src="img/cluster_process.png">
-<figcaption align="center">Visual of clustering process</figcaption>
-</figure>
-</p>
+|<a href="img/cluster_process.png" align="center"><img src="img/cluster_process.png" alt="An example clustering of flash data points" width="800px"/></a>
+|:--:|
+|Visual of clustering process|
 
 #### Data Assets
 
