@@ -11,6 +11,7 @@ setup(
         "pandas",
         "boto3",
         "botocore",
+        "scikit-learn",
     ],
     author='Adebayo Adejare',
     author_email='adebayo.adejare@gmail.com',
