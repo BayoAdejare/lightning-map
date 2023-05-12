@@ -1,6 +1,7 @@
-boto3
-botocore
 dagster
 duckdb
 netCDF4
 pandas
+boto3
+botocore
+scikit-learn

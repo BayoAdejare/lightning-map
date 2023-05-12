@@ -13,7 +13,7 @@ Blog post: [Exploratory Data Analysis with Lightning Clustering Pipeline](https:
 
 First make sure, you have the requirements installed, this can be installed from the project directory via pip's setup command:
 
-`pip install .`
+`pip install . # =< python3.11 `
 
 ## Quick Start
 

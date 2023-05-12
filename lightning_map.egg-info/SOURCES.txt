@@ -9,8 +9,8 @@ lightning_map.egg-info/dependency_links.txt
 lightning_map.egg-info/requires.txt
 lightning_map.egg-info/top_level.txt
 lightning_map/assets/__init__.py
-lightning_map/assets/eda/__init__.py
-lightning_map/assets/eda/clustering.py
-lightning_map/assets/eda/ingestor.py
+lightning_map/assets/clustering/__init__.py
+lightning_map/assets/clustering/clustering.py
+lightning_map/assets/clustering/ingestor.py
 lightning_map/assets/etl/__init__.py
 lightning_map/assets/etl/etl.py
