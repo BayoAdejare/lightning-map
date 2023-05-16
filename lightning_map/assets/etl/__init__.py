@@ -63,7 +63,7 @@ def source(context):
         # Download file from list
         filepath = files['Key']
         path, filename = os.path.split(filepath)
-        context.log.info(f"Dowloading {filename} to {os.path.join(extract_folder, filename)}")
+        print(f"Dowloading {filename} to {os.path.join(extract_folder, filename)}")
         s3_extract = extract(bucket_name, prefix, filename, filepath, context)
         results.append(s3_extract)
     # context.add_output_metadata({s3_extract -> results})
@@ -88,7 +88,7 @@ def transformations(context, source):
     context.log.info(f"Starting file conversions for: {extract_folder}")
     # Convert glm files into one time series dataframe
     for filename in tqdm(glm_files, desc=f"transform {extract_folder}"):
-        context.log.info(f"Converting {filename} to csv")
+        print(f"Converting {filename} to csv")
         csv_transform = transform(extract_folder, transform_folder, filename, context)
         os.rename(filename, f"{filename}.ext")
         results.append(csv_transform)
