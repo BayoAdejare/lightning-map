@@ -22,7 +22,8 @@ def ingestion(start_date: str, end_date: str, hours: [str], context: str=None):
 
     for single_date in pd.date_range(start_date, end_date, freq="D"):
         for single_hour in hours:
-            print(f"Start date: {start_date}; End date: {end_date}")
+            single_hour = single_hour.rjust(2,'0')
+            print(f"Start date: {start_date}; End date: {end_date}; Hour: {single_hour}")
             # Export env vars
             os.environ["GOES_YEAR"] = single_date.strftime("%Y")
             os.environ["GOES_DOY"] = single_date.strftime("%j")

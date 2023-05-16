@@ -25,11 +25,12 @@ def kmeans_model(data: pd.DataFrame, num_clusters: int, context: str=None):
     X = data.loc[:, ["lon", "lat"]]
     
     kmeans_kwargs = {
-        "init": "random",
-        "n_init": 10,
-        "max_iter": 30,
-        "random_state": 42,
+    "init": "k-means++",
+    "n_init": 10,
+    "max_iter": 100,
+    "random_state": 60,
     }
+
     kmeans = KMeans(n_clusters=num_clusters, **kmeans_kwargs)
     X["Cluster"] = kmeans.fit_predict(X)
     X["Cluster"] = X["Cluster"].astype("category")
@@ -42,10 +43,10 @@ def sil_evaluation(data: pd.DataFrame, context: str=None):
     data = data.loc[:, ["lon", "lat"]]
     
     kmeans_kwargs = {
-        "init": "random",
+        "init": "k-means++",
         "n_init": 10,
-        "max_iter": 30,
-        "random_state": 42,
+        "max_iter": 50,
+        "random_state": 60,
     }
 
     # holds the silhouette coefficients for each k
@@ -69,10 +70,10 @@ def elb_evaluation(data: pd.DataFrame, context: str=None):
     """
     
     kmeans_kwargs = {
-        "init": "random",
+        "init": "k-means++",
         "n_init": 10,
-        "max_iter": 30,
-        "random_state": 42,
+        "max_iter": 50,
+        "random_state": 60,
     }
 
     # A list holds the sum of squared distance for each k

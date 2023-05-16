@@ -1,6 +1,6 @@
 from dagster import IOManager, Definitions, ScheduleDefinition, define_asset_job, load_assets_from_package_module
 
-from .assets import etl, eda
+from .assets import etl, clustering
 
 etl_asset_job = define_asset_job(name="etl_job", selection=["source", "transformations", "destination"])
 hourly_etl_schedule = ScheduleDefinition(

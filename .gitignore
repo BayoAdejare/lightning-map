@@ -6,6 +6,7 @@ data/
 *.db
 *.db.wal
 # packaging
+**build
 **__pycache__
 *.pyc
 *.egg-info/

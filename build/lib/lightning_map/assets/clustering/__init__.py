@@ -6,14 +6,18 @@ import duckdb as db
 from dagster import asset, RetryPolicy
 from .clustering import preprocess, kmeans_model, sil_evaluation, elb_evaluation
 from .ingestor import ingestion
+from datetime import datetime, timedelta
 
-# Date range 
-start_date = "2023-04-30"
-end_date = "2023-04-30"
+# Date range
+dt = datetime.utcnow() - timedelta(hours=1)
+start_date = str(dt)
+end_date = str(dt)
+hours = dt.strftime('%H')
 
 # 24 hours
-hours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", 
-            "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
+# hours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", 
+#             "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
+
 
 def db_connect(process: str):
     if process == "preprocess":
@@ -37,8 +41,8 @@ def ingestor(context):
 def preprocessor(context, ingestor):
     # config data load
     lat_df, lon_df = db_connect(process="preprocess")
-    context.log.info(f"Starting file extracts for lon ...")
-    context.log.info(f"Starting file extracts for lat ...")
+    context.log.info("Starting file extracts for lon ...")
+    context.log.info("Starting file extracts for lat ...")
     results = []
     preprocessing = preprocess(lat_df, lon_df, context)
     results = pd.DataFrame(preprocessing)
